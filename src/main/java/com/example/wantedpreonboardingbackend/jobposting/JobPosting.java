@@ -19,7 +19,7 @@ public class JobPosting {
 
     @Id
     @GeneratedValue
-    private int jobPostingId;
+    private Long jobPostingId;
 
     @ManyToOne
     private Company company;
@@ -32,4 +32,15 @@ public class JobPosting {
 
     private String usingSkill;
 
+    @Override
+    public String toString() {
+        return "JobPosting{" +
+                "jobPostingId=" + jobPostingId +
+                ", company=" + company +
+                ", position='" + position + '\'' +
+                ", reward=" + reward +
+                ", description='" + description + '\'' +
+                ", usingSkill='" + usingSkill + '\'' +
+                '}';
+    }
 }
