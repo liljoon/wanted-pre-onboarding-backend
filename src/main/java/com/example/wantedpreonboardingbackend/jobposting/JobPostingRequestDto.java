@@ -32,8 +32,8 @@ public class JobPostingRequestDto {
                 '}';
     }
 
-    public JobPosting toEntity(CompanyRepository companyRepository) {
-        JobPosting jobPosting = new JobPosting(null, companyRepository.findById(companyId).orElse(null), position, reward, description, usingSkill);
+    public JobPosting toEntity(CompanyRepository companyRepository) throws Exception {
+        JobPosting jobPosting = new JobPosting(null, companyRepository.findById(companyId).orElseThrow(() -> new Exception("No Company!")), position, reward, description, usingSkill);
 
         return jobPosting;
     }
