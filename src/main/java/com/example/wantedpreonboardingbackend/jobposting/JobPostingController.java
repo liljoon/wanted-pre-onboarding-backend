@@ -33,7 +33,7 @@ public class JobPostingController {
     }
 
     @GetMapping("/jobposting")
-    public List<JobPostingResponseDto>  retrieveJobPostings() {
+    public List<JobPostingResponseDto>  retrieveAllJobPostings() {
         List<JobPosting> jobPostings = repository.findAll();
         List<JobPostingResponseDto> jobPostingResponseDtoList = new ArrayList<>();
 

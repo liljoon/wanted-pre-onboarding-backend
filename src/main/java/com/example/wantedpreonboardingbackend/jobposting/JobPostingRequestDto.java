@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.jobposting;
 
 import com.example.wantedpreonboardingbackend.company.CompanyRepository;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Service;
 @Getter
 @Service
 public class JobPostingRequestDto {
-    private Integer company_id;
+    @JsonProperty("company_id")
+    private Integer companyId;
 
     private String position;
 
@@ -22,7 +24,7 @@ public class JobPostingRequestDto {
     @Override
     public String toString() {
         return "JobPostingRequestDto{" +
-                "company_id=" + company_id +
+                "company_id=" + companyId +
                 ", position='" + position + '\'' +
                 ", reward=" + reward +
                 ", description='" + description + '\'' +
@@ -31,13 +33,13 @@ public class JobPostingRequestDto {
     }
 
     public JobPosting toEntity(CompanyRepository companyRepository) {
-        JobPosting jobPosting = new JobPosting(null, companyRepository.findById(company_id).orElse(null), position, reward, description, usingSkill);
+        JobPosting jobPosting = new JobPosting(null, companyRepository.findById(companyId).orElse(null), position, reward, description, usingSkill);
 
         return jobPosting;
     }
 
     public JobPosting updateAndToEntity(JobPosting oldJobPosting) {
-        if (company_id != null) {
+        if (companyId != null) {
             //company_id 수정 에러
             return null;
         }
