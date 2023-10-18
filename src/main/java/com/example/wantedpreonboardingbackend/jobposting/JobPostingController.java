@@ -33,16 +33,30 @@ public class JobPostingController {
     }
 
     @GetMapping("/jobposting")
-    public List<JobPostingResponseDto>  retrieveAllJobPostings() {
+    public List<JobPostingResponseDto>  retrieveAllJobPostings(@RequestParam(required = false) String search) {
         List<JobPosting> jobPostings = repository.findAll();
         List<JobPostingResponseDto> jobPostingResponseDtoList = new ArrayList<>();
 
-
-        jobPostings.forEach(jobPosting -> {
-            JobPostingResponseDto jobPostingResponseDto = new JobPostingResponseDto();
-            jobPostingResponseDto.fromEntity(jobPosting);
-            jobPostingResponseDtoList.add(jobPostingResponseDto);
-        });
+        if (search == null) {
+            jobPostings.forEach(jobPosting -> {
+                JobPostingResponseDto jobPostingResponseDto = new JobPostingResponseDto();
+                jobPostingResponseDto.fromEntity(jobPosting);
+                jobPostingResponseDtoList.add(jobPostingResponseDto);
+            });
+        }
+        else {
+            jobPostings.forEach(jobPosting -> {
+                JobPostingResponseDto jobPostingResponseDto = new JobPostingResponseDto();
+                jobPostingResponseDto.fromEntity(jobPosting);
+                if (jobPostingResponseDto.getPosition().contains(search)
+                        || jobPostingResponseDto.getUsingSkill().contains(search)
+                        || jobPostingResponseDto.getCompanyName().contains(search)
+                        || jobPostingResponseDto.getCompanyNation().contains(search)
+                        || jobPostingResponseDto.getCompanyRegion().contains(search)) {
+                    jobPostingResponseDtoList.add(jobPostingResponseDto);
+                }
+            });
+        }
 
         return jobPostingResponseDtoList;
     }
