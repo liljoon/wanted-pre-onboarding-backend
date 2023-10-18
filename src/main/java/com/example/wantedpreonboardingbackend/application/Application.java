@@ -2,22 +2,22 @@ package com.example.wantedpreonboardingbackend.application;
 
 import com.example.wantedpreonboardingbackend.jobposting.JobPosting;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 public class Application {
 
     @Id
     @GeneratedValue
-    private int applicationId;
+    private Long applicationId;
 
     @ManyToOne
     private JobPosting jobPosting;
+
+    private Integer userId;
 }
