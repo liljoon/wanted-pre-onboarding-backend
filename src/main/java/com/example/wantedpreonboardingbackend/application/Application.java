@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.application;
 
 import com.example.wantedpreonboardingbackend.jobposting.JobPosting;
+import com.example.wantedpreonboardingbackend.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,5 +20,6 @@ public class Application {
     @ManyToOne
     private JobPosting jobPosting;
 
-    private Integer userId;
+    @ManyToOne
+    private User user;
 }

@@ -27,3 +27,6 @@ values (1002, 1004, 500000, '릴준랩에서 프론트엔드 주니어 개발자
 
 insert into COMPANY_JOB_POSTINGS(COMPANY_COMPANY_ID, JOB_POSTINGS_JOB_POSTING_ID)
 values (1002, 1004);
+
+insert into JOB_USER(USER_ID, ID, NAME, PASSWORD)
+values (1001, 'testid', 'testname', 'testpw')
